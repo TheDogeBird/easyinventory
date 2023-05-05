@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Inventory Item</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Add Inventory Item</h1>
+  <form id="form">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required>
+    <label for="description">Description</label>
+    <input type="text" id="description" name="description">
+    <label for="quantity">Quantity</label>
+    <input type="number" id="quantity" name="quantity" required>
+    <label for="category">Category</label>
+    <select id="category" name="category" required>
+      <option value="" disabled selected>Select a category</option>
+      <option value="Computers">Computers</option>
+      <option value="Servers">Servers</option>
+      <option value="Network Equipment">Network Equipment</option>
+      <option value="Laptops">Laptops</option>
+      <option value="Workstations">Workstations</option>
+      <option value="Printers">Printers</option>
+      <option value="Monitors">Monitors</option>
+      <option value="Cables">Cables</option>
+      <option value="Peripherals">Peripherals</option>
+      <option value="Misc">Misc</option>
+    </select>
+    <label for="items-shipped">Items Shipped</label>
+    <input type="text" id="items-shipped" name="itemsShipped">
+    <button type="submit" id="submit-btn">Add Item</button>
+    <div id="form-error" class="error"></div>
+  </form>
+  <script src="inventoryitem.js"></script>
+</body>
+</html>

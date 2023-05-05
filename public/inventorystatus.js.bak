@@ -1,0 +1,41 @@
+const tbody = document.querySelector('tbody');
+
+// fetch inventory data
+fetch('/inventory')
+  .then(res => res.json())
+  .then(inventory => {
+    inventory.forEach(item => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${item.name}</td>
+        <td>${item.description || '-'}</td>
+        <td>${item.category}</td>
+        <td>${item.itemsShipped || '-'}</td>
+        <td>${item.quantity}</td>
+        <td>$${(item.quantity * 100).toFixed(2)}</td>
+        <td><button onclick="editItem('${item._id}')">Edit</button></td>
+      `;
+      tr.dataset.id = item._id;
+      tbody.appendChild(tr);
+    });
+  })
+  .catch(err => console.log(err));
+
+function editItem(id) {
+  // get inventory item data
+  const tr = document.querySelector(`tr[data-id="${id}"]`);
+  const name = tr.children[0].textContent;
+  const description = tr.children[1].textContent;
+  const category = tr.children[2].textContent;
+  const itemsShipped = tr.children[3].textContent;
+  const quantity = tr.children[4].textContent;
+
+  // prepopulate form with data
+  const form = document.getElementById('form');
+  form.elements.name.value = name;
+  form.elements.description.value = description;
+  form.elements.category.value = category;
+  form.elements.itemsShipped.value = itemsShipped;
+  form.elements.quantity.value = quantity;
+  form.dataset.id = id;
+}
